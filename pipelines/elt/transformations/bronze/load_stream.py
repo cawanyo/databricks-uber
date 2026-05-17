@@ -5,7 +5,7 @@ from pyspark.sql.functions import *
 # Event Hubs configuration
 EH_NAMESPACE = spark.conf.get("namespace")
 EH_NAME = spark.conf.get("name")
-EH_CONN_STR = spark.conf.get("connection_string")
+EH_CONN_STR = dbutils.secrets.get(scope="dev-scope", key="connection_string")
 # Kafka Consumer configuration
 
 KAFKA_OPTIONS = {

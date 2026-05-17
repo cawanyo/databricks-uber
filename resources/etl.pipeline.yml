@@ -9,7 +9,6 @@ resources:
       configuration:
         namespace: uber-data-namespace
         name: uber-topic
-        connection_string: Endpoint=sb://uber-data-namespace.servicebus.windows.net/;SharedAccessKeyName=listiner;SharedAccessKey=ayfIF6qYctnraOO3wuls55spwamad8hAv+AEhARsTlk=;EntityPath=uber-topic
         env: dev
 
       serverless: true
@@ -19,8 +18,4 @@ resources:
         - glob:
             include: ../pipelines/elt/transformations/**
 
-      environment:
-        dependencies:
-          # We include every dependency defined by pyproject.toml by defining an editable environment
-          # that points to the folder where pyproject.toml is deployed.
-          - --editable ${workspace.file_path}
+    
