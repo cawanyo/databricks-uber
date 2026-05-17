@@ -3,7 +3,7 @@ from pyspark.sql.functions import col, expr
 
 @dp.view
 def dim_passenger_view():
-  df = spark.readStream.table("dev.silver.silver_obt ")
+  df = spark.readStream.table("uber.dev.silver_obt ")
   df =  df.select("passenger_id", "passenger_name", "passenger_email", "passenger_phone")
   df = df.dropDuplicates(subset=["passenger_id"])
   return df
@@ -25,7 +25,7 @@ dp.create_auto_cdc_flow(
 
 @dp.view
 def dim_driver_view():
-  df = spark.readStream.table("dev.silver.silver_obt")
+  df = spark.readStream.table("uber.dev.silver_obt")
   df =  df.select("driver_id", "driver_name", "driver_license", "driver_phone", "driver_rating")
   df = df.dropDuplicates(subset=["driver_id"])
   return df
@@ -45,7 +45,7 @@ dp.create_auto_cdc_flow(
 
 @dp.view
 def dim_vehicle_view():
-  df = spark.readStream.table("dev.silver.silver_obt")
+  df = spark.readStream.table("uber.dev.silver_obt")
   df =  df.select("vehicle_id", "vehicle_make_id", "vehicle_model", "vehicle_type", "license_plate")
   df = df.dropDuplicates(subset=["vehicle_id"])
   return df
@@ -64,7 +64,7 @@ dp.create_auto_cdc_flow(
 
 @dp.view
 def dim_location_view():
-  df = spark.readStream.table("dev.silver.silver_obt")
+  df = spark.readStream.table("uber.dev.silver_obt")
   df =  df.select("pickup_city_id", "city", "region", "state")
   df = df.dropDuplicates(subset=["pickup_city_id"])
   return df
@@ -84,7 +84,7 @@ dp.create_auto_cdc_flow(
 
 @dp.view 
 def fact_view():
-  df = spark.readStream.table("dev.silver.silver_obt")
+  df = spark.readStream.table("uber.dev.silver_obt")
   df = df.select( "pickup_location_id", "driver_id", "passenger_id", "vehicle_id", "total_fare", "tip_amount",   "duration_minutes", "distance_miles", "rating", "ride_id")
   return df
 
