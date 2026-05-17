@@ -6,6 +6,12 @@ resources:
       name: etl
       catalog: ${var.catalog}
       schema: ${var.schema}
+      configuration:
+        namespace: uber-data-namespace
+        name: uber-topic
+        connection_string: Endpoint=sb://uber-data-namespace.servicebus.windows.net/;SharedAccessKeyName=listiner;SharedAccessKey=ayfIF6qYctnraOO3wuls55spwamad8hAv+AEhARsTlk=;EntityPath=uber-topic
+        env: dev
+
       serverless: true
       root_path: "../pipelines/elt"
 
